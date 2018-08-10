@@ -9,83 +9,43 @@ console.log('Add validation!');
 // call the fields and prevent default
 document.getElementById('parking-form').addEventListener('submit', function () {
     event.preventDefault()
-    // clearError()
+
+    clearError()
 
     var inputElements = document.getElementsByTagName('input')
     var carField = document.getElementById('car-field')
-    var errorDiv = document.createElement ('div')
+    var elparentElement = document.getElementsByTagName('input')
     for (var el of inputElements) {
+        if (el.value.trim() === '') {
+            el.parentElement.classList.add('input-invalid')
+            el.parentElement.classList.remove('input-valid')
+            showInvalid(el.parentElement)
+        } else {
+            el.parentElement.classList.add('input-valid')
+            el.parentElement.classList.remove('input-invalid')
+        }
+
+    }
     if (document.getElementById('car-year').value.trim() === '' || document.getElementById('car-make').value.trim() === '' || document.getElementById('car-model').value.trim() === '') {
         carField.classList.add('input-invalid')  
-    }
-    if (el.value.trim() === '') {
-        el.parentElement.classList.add('input-invalid') 
-
-        errorDiv.innerText = 'Cannot be blank'
-
-
-    // } else if (inputCar.value.trim() === '') {
-    //     el.parentElement.classList.add('input-invalid') 
-    //     errorDiv.classList.add('errorDiv')
-    //     errorDiv.innerText = 'Cannot be blank'
     } else {
-        el.parentElement.classList.add('input-valid')
         carField.classList.add('input-valid')
-}
-//     var name = document.getElementById('name').value.trim()
-// if (name === '') {
-//      showInvalidName()
-// } else { 
-//     alert ("Thank you for your reservation!")
     }
+
 })
 
-// function clearError() {
-//     var field = document.querySelectorAll ('.input')
-//     // field.classList.remove("errorDiv")
-//     var errorMsg = field.parentElement.getElementByClassName('errorDiv')
-//     if (errorMsg) {
-//        errorMsg.remove() 
-//     }
-// }
+// el parent element varianle, if has input group - look at parent
 
-// function showInvalid() {
-//     var errorDiv = document.createElement ('div')
-//     errorDiv.classList.add('errorDiv')
-//     errorDiv.innerText = 'Cannot be blank'
-//     var fieldName = document.getElementById('name-field')
-//     fieldName.appendChild(errorDiv)
-//     fieldName.classList.add('input-invalid')}
+function clearError() {
+    var errorMsgs = document.querySelectorAll('.errorDiv')
+    for (var errorMsg of errorMsgs) {
+        errorMsg.remove()
+    }
+}
 
-// function showInvalidCar() {
-//     var errorDiv = document.createElement ('div')
-//     errorDiv.classList.add('input-invalid')
-//     errorDiv.innerText = 'Cannot be blank'
-//     var fieldCar = document.getElementByClassName('input-group')
-//     fieldCar.appendParent(errorDiv)
-//     fieldCar.classList.add('input-invalid')}
-
-// document.getElementById('parking-form').addEventListener('submit', function () {
-//     event.preventDefault()
-    
-//         clearError()
-    
-//  var startDate = document.getElementById('start-date').value.trim()
-//     if (startDate === '') {
-//          showInvalidStart()
-//     } 
-//     // else { 
-//     //     alert ("Thank you for your reservation!")
-//     //     }
-//     })
-
-// function showInvalidStart() {
-//     var errorDiv = document.createElement ('div')
-//     errorDiv.classList.add('errorDiv')
-//     errorDiv.innerText = 'Cannot be blank'
-//     var field = document.getElementById('start-date-field')
-//     field.appendChild(errorDiv)
-//     field.classList.add('input-invalid')}
-
-
-
+function showInvalid(el) {
+    var errorDiv = document.createElement('div')
+    errorDiv.classList.add('errorDiv')
+    errorDiv.innerText = 'Cannot be blank'
+    el.appendChild(errorDiv)
+}
