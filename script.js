@@ -12,17 +12,25 @@ document.getElementById('parking-form').addEventListener('submit', function () {
     // clearError()
 
     var inputElements = document.getElementsByTagName('input')
+    var carField = document.getElementById('car-field')
+    var errorDiv = document.createElement ('div')
     for (var el of inputElements) {
+    if (document.getElementById('car-year').value.trim() === '' || document.getElementById('car-make').value.trim() === '' || document.getElementById('car-model').value.trim() === '') {
+        carField.classList.add('input-invalid')  
+    }
     if (el.value.trim() === '') {
         el.parentElement.classList.add('input-invalid') 
 
-        var errorDiv = document.createElement ('div')
-        errorDiv.classList.add('errorDiv')
         errorDiv.innerText = 'Cannot be blank'
-       
+
+
+    // } else if (inputCar.value.trim() === '') {
+    //     el.parentElement.classList.add('input-invalid') 
+    //     errorDiv.classList.add('errorDiv')
+    //     errorDiv.innerText = 'Cannot be blank'
     } else {
         el.parentElement.classList.add('input-valid')
-
+        carField.classList.add('input-valid')
 }
 //     var name = document.getElementById('name').value.trim()
 // if (name === '') {
