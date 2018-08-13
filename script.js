@@ -1,12 +1,5 @@
 console.log('Add validation!');
 
-// 1 Go through each field and evaluate if there is anything in the input field
-// 2 If yes = done
-// 3 If no - go back and enter 
-// 4 
-
-
-// call the fields and prevent default
 document.getElementById('parking-form').addEventListener('submit', function () {
     event.preventDefault()
 
@@ -14,7 +7,7 @@ document.getElementById('parking-form').addEventListener('submit', function () {
 
     var inputElements = document.getElementsByTagName('input')
     var carField = document.getElementById('car-field')
-    var elparentElement = document.getElementsByTagName('input')
+    // var elparentElement = document.getElementsByClassName('input-field')
     for (var el of inputElements) {
         if (el.value.trim() === '') {
             el.parentElement.classList.add('input-invalid')
@@ -27,14 +20,15 @@ document.getElementById('parking-form').addEventListener('submit', function () {
 
     }
     if (document.getElementById('car-year').value.trim() === '' || document.getElementById('car-make').value.trim() === '' || document.getElementById('car-model').value.trim() === '') {
-        carField.classList.add('input-invalid')  
+        carField.classList.add('input-invalid') 
+        carField.classList.remove('input-valid') 
+        
     } else {
         carField.classList.add('input-valid')
-    }
+        carField.classList.remove('input-invalid')
+}
 
 })
-
-// el parent element varianle, if has input group - look at parent
 
 function clearError() {
     var errorMsgs = document.querySelectorAll('.errorDiv')
@@ -49,3 +43,28 @@ function showInvalid(el) {
     errorDiv.innerText = 'Cannot be blank'
     el.appendChild(errorDiv)
 }
+
+
+//Attempts to develop function for car field: 
+
+// function invalidCarField(elparentElement) {
+//     var carYear = document.getElementById('car-year')
+//     var carMake = document.getElementById('car-make')
+//     var carModel = document.getElementById('car-model')
+//     var elparentElement = document.getElementsByClassName('input-field')
+//    if (carYear.value.trim() === '' ||
+//         carMake.value.trim() ==='' ||
+//         carModel.value.trim() === '') {
+//             elparentElement.classList.add('input-invalid')
+//             elparentElement.classList.remove('input-valid')
+//         }
+
+// }
+
+// function carParent(el) {
+//     var carField = document.getElementById('car-field')
+//     for (var el of elements) {
+//         showInvalid
+//     }
+    
+// }
